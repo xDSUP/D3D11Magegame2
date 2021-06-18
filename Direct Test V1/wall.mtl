@@ -2,13 +2,13 @@
 # Material Count: 1
 
 newmtl Walls
-Ns 0.000000
-Ka 1.000000 1.000000 1.000000
+Ns 82.979549
+Ka 0.299595 0.299595 0.299595
 Kd 0.800000 0.800000 0.800000
-Ks 0.255814 0.255814 0.255814
+Ks 0.106016 0.106016 0.106016
 Ke 0.000000 0.000000 0.000000
 Ni 1.450000
 d 1.000000
-illum 2
-map_Kd brick-texture.png
-map_Ns brick-normal.png
+illum 3
+map_Bump ground-normal.png
+map_Kd C:\\Users\\xD_HOHOHO\\source\\repos\\C++\\D3D11 Magegame\\Direct Test V1\\brick-texture.png

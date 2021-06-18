@@ -84,6 +84,7 @@ private:
 	Player* player;
 	Labirint* labirint;
 	Model* wallModel;
+	Model* flourModel;
 	StaticMesh* mesh;
 	list<FireBall*> fireBalls;
 	ParticleGenerator* torchParticleGenerator;

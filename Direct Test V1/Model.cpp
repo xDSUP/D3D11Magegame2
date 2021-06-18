@@ -133,9 +133,9 @@ AsimpMesh* Model::processMesh(aiMesh* mesh, const aiScene* scene)
     vector<Texture> diffuseMaps = loadMaterialTextures(material, aiTextureType_DIFFUSE, TextureType::DIFFUSE);
     textures.insert(textures.end(), diffuseMaps.begin(), diffuseMaps.end());
     
-    // 2. Карты отражения
-    vector<Texture> specularMaps = loadMaterialTextures(material, aiTextureType_SPECULAR, TextureType::SPECULAR);
-    textures.insert(textures.end(), specularMaps.begin(), specularMaps.end());
+    //// 2. Карты отражения
+    //vector<Texture> specularMaps = loadMaterialTextures(material, aiTextureType_SPECULAR, TextureType::SPECULAR);
+    //textures.insert(textures.end(), specularMaps.begin(), specularMaps.end());
     
     // 3. Карты нормалей
     std::vector<Texture> normalMaps = loadMaterialTextures(material, aiTextureType_HEIGHT, TextureType::HEIGHT);

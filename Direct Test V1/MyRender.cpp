@@ -96,6 +96,11 @@ bool MyRender::Init()
 	if (!textCamCoord->Init(L"", false, 30))
 		return false;
 
+	flourModel = new Model(this);
+	
+	if (!flourModel->Init("flour.obj"))
+		return false;
+
 	if(!modelList.Init(10))
 		return false;
 
@@ -172,10 +177,13 @@ bool MyRender::Draw()
 	handleCamMove();
 	auto frameTime = timer.GetFrameTime();
 	cam.Render(frameTime);
+	
 
 	XMMATRIX viewMatrix = cam.GetViewMatrix();
 	frustum.ConstructFrustum(1000, m_Projection, viewMatrix);
 
+	flourModel->Draw(viewMatrix);
+	
 	int modelCount = modelList.GetModelCount();
 	int renderCount = 0;
 
