@@ -176,28 +176,30 @@ bool MyRender::Draw()
 	XMMATRIX viewMatrix = cam.GetViewMatrix();
 	frustum.ConstructFrustum(1000, m_Projection, viewMatrix);
 
-	int modelCount = modelList.GetModelCount();
 	int renderCount = 0;
 
-	for (int i = 0; i < modelCount; i++)
+	for (int i = 0; i < labirint->walls.size(); i++)
 	{
-		float x, y, z;
-		modelList.GetData(i, x, y, z);
-		bool renderModel = frustum.CheckSphere(x, y, z, 1);
+		auto pos = labirint->walls[i]->GetPosition();
+		bool renderModel = frustum.CheckCube(pos.x, pos.y, pos.z, 0.5);
 		if(renderModel)
 		{
-			mesh->Identity();
-			mesh->Translate(x, y, z);
-			mesh->Draw(viewMatrix);
-
+			labirint->walls[i]->Draw(viewMatrix);
 			renderCount++;
 		}
 	}
-	//labirint->Identity();
-	//labirint->Scale(2, 2, 2);
-	labirint->Draw(viewMatrix);
+	//labirint->Draw(viewMatrix);
 
 	player->Draw(viewMatrix);
+
+	mesh->Identity();
+	mesh->Translate(
+		player->GetTorchLight()->position.x, 
+		player->GetTorchLight()->position.y, 
+		player->GetTorchLight()->position.z
+	);
+	mesh->Draw(viewMatrix);
+	
 	updateAndDrawFireBalls(viewMatrix);
 
 	

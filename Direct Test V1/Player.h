@@ -26,7 +26,7 @@ public:
 		torchLight.att = XMFLOAT3(0.0f, 0.1f, 0.2f);
 		//m_PointLight.color = XMFLOAT3(0.5f, 0.1f, 0.0f);
 		torchLight.range = 10.0f;
-		torchPos = XMFLOAT3(-1, 4, 1);
+		torchPos = XMFLOAT3(0.5f, 1.4f, 0.6f);
 		
 		return model->Init(path);
 	}
@@ -67,7 +67,7 @@ public:
 		torchLight.position.z = XMVectorGetByIndex(lightPos.r[3], 2);
 		
 		//sLog->Debug("Xpos:%lf | Ypos:%lf | Zpos: %lf rad: %lf", pos.x, pos.y, pos.z, rot.y);
-		//sLog->Debug("Xpos:%lf | Ypos:%lf | Zpos: %lf rad: %lf", torchPos.x, torchPos.y, torchPos.z);
+		sLog->Debug("Xpos:%lf | Ypos:%lf | Zpos: %lf rad: %lf", torchPos.x, torchPos.y, torchPos.z);
 		(render->GetPointLights().begin()._Ptr->_Myval)->light.position = this->GetTorchLight()->position;
 		model->Draw(view);
 	}
