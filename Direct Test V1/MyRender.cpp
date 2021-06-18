@@ -1,4 +1,4 @@
-#pragma once
+п»ї#pragma once
 
 #include "MyRender.h"
 
@@ -96,6 +96,11 @@ bool MyRender::Init()
 	if (!textCamCoord->Init(L"", false, 30))
 		return false;
 
+	flourModel = new Model(this);
+	
+	if (!flourModel->Init("flour.obj"))
+		return false;
+
 	if(!modelList.Init(10))
 		return false;
 
@@ -158,9 +163,9 @@ void MyRender::updateAndDrawFireBalls(XMMATRIX viewMatrix)
 		for (FireBall* fireBall : delFireballs)
 		{
 			fireBalls.remove(fireBall);
-			//std::advance(it, iter._Ptr->_Myval); // <-- advance итерирует переданный итератор на k позиций
+			//std::advance(it, iter._Ptr->_Myval); // <-- advance пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ k пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 			
-			// <--- Вернет итератор на k+1 элемент, перед it нет *
+			// <--- пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ k+1 пїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅ it пїЅпїЅпїЅ *
 			delete fireBall;
 		}
 	}
@@ -172,10 +177,14 @@ bool MyRender::Draw()
 	handleCamMove();
 	auto frameTime = timer.GetFrameTime();
 	cam.Render(frameTime);
+	
 
 	XMMATRIX viewMatrix = cam.GetViewMatrix();
 	frustum.ConstructFrustum(1000, m_Projection, viewMatrix);
 
+	flourModel->Draw(viewMatrix);
+	
+	int modelCount = modelList.GetModelCount();
 	int renderCount = 0;
 
 	for (int i = 0; i < labirint->walls.size(); i++)
@@ -210,7 +219,7 @@ bool MyRender::Draw()
 	torchParticleGenerator->Draw(viewMatrix);
 	
 	TurnZBufferOff();
-	std::wstring t = L"Сфер на экране: " + intToStr(renderCount);
+	std::wstring t = L"пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ: " + intToStr(renderCount);
 	
 	textNumSphere->SetText(t);
 	textNumSphere->Draw(1.0f, 1.0f, 1.0f, 20.0f, 10.0f);
@@ -264,7 +273,7 @@ XMFLOAT3 MyRender::GetWorldCords(int x, int y)
 		0
 	);
 
-	XMVECTOR N = XMVectorSet(0.0f, 1.0f, 0.0f, 0); // Пересечение с плоскостью
+	XMVECTOR N = XMVectorSet(0.0f, 1.0f, 0.0f, 0); // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	auto t = -XMVector3Dot(vPickRayOrig, N) / XMVector3Dot(vPickRayDir, N);
 	auto result = vPickRayOrig + vPickRayDir * t;
 	return XMFLOAT3(XMVectorGetByIndex(result, 0), 0, XMVectorGetByIndex(result, 2));
