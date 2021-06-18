@@ -10,9 +10,9 @@ namespace D3D11Framework
 	{
 		XMFLOAT3 Pos;
 		XMFLOAT3 Normal;
-		XMFLOAT2 Tex;
+		XMFLOAT4 Tangent;
+		XMFLOAT2 Tex; 
 	};
-
 
 	struct VSConstantBuffer
 	{
@@ -49,7 +49,11 @@ namespace D3D11Framework
 		void Translate(float x, float y, float z);
 		void Rotate(float angle, float x, float y, float z);
 		void Scale(float x, float y, float z);
-		
+
+		void SetMaterial(Material mat)
+		{
+			m_material = mat;
+		}
 
 		bool InitBuffers(unsigned short VertexCount, unsigned short indexCount, unsigned short* indices, Vertex* vertices);
 

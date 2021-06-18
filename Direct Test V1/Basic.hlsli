@@ -24,6 +24,7 @@ cbuffer PSConstantBuffer : register(b1)
     float g_NumSpotLight;
     float g_Pad1;
     float g_Pad2;
+	
 }
 
 struct VertexPosNormalTex
@@ -33,25 +34,35 @@ struct VertexPosNormalTex
 	float2 Tex : TEXCOORD;
 };
 
-struct VertexPosTex
-{
-    float4 PosL : SV_POSITION;
-    float2 Tex : TEXCOORD;
-};
-
 struct VertexPosHWNormalTex
 {
 	float4 PosH : SV_POSITION;
     float3 PosW : POSITION;     // 在世界中的位置
     float3 NormalW : NORMAL;    // 法向量在世界中的方向
 	float2 Tex : TEXCOORD;
-    float3 Tangent : TANGENT;
-    float3 Binormal : BINORMAL;
 };
 
 struct VertexPosHTex
 {
     float4 PosH : SV_POSITION;
+    float2 Tex : TEXCOORD;
+};
+
+struct VertexPosNormalTangentTex
+{
+    float3 PosL : POSITION;
+    float3 NormalL : NORMAL;
+    float4 TangentL : TANGENT;
+    float2 Tex : TEXCOORD;
+};
+
+
+struct VertexPosHWNormalTangentTex
+{
+    float4 PosH : SV_POSITION;
+    float3 PosW : POSITION; // 在世界中的位置
+    float3 NormalW : NORMAL; // 法向量在世界中的方向
+    float4 TangentW : TANGENT; // 切线在世界中的方向
     float2 Tex : TEXCOORD;
 };
 

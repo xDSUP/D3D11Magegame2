@@ -59,10 +59,13 @@ bool StaticMesh::Init(wchar_t *name)
 
 	m_shader->AddInputElementDesc("POSITION", DXGI_FORMAT_R32G32B32_FLOAT);
 	m_shader->AddInputElementDesc("NORMAL", DXGI_FORMAT_R32G32B32_FLOAT);
+	m_shader->AddInputElementDesc("TANGENT", DXGI_FORMAT_R32G32B32A32_FLOAT);
 	m_shader->AddInputElementDesc("TEXCOORD", DXGI_FORMAT_R32G32_FLOAT);
 	
+	
 	//m_shader->AddInputElementDesc("TANGENT", DXGI_FORMAT_R32G32B32_FLOAT);
-	if ( !m_shader->CreateShader(L"meshVS.hlsl", L"meshPS.hlsl") )
+	//if ( !m_shader->CreateShader(L"meshVS.hlsl", L"meshPS.hlsl") )
+	if ( !m_shader->CreateShader(L"NormalMapVS.hlsl", L"NormalMapPS.hlsl") )
 		return false;
 
 	if( !m_loadFromFile(name) )
@@ -124,7 +127,6 @@ void StaticMesh::m_SetShaderParameters(CXMMATRIX viewmatrix)
 	}
 	else
 	{
-		//cbPS.material.ambient = XMFLOAT4(0.5f, 0.5f, 0.5f, 1.0f);
 		psConstantBuffer.material.ambient = XMFLOAT4(0.3f, 0.3f, 0.3f, 1.0f);
 		psConstantBuffer.material.diffuse = XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f);
 		psConstantBuffer.material.specular = XMFLOAT4(0.3f, 0.3f, 0.3f, 5.0f);

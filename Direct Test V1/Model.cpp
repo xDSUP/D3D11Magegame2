@@ -18,7 +18,7 @@ void Model::Draw(CXMMATRIX viewMatrix)
 void Model::loadModel(string path)
 {
     Assimp::Importer import;
-    const aiScene* scene = import.ReadFile(path, aiProcess_Triangulate | aiProcess_FlipUVs);
+    const aiScene* scene = import.ReadFile(path, aiProcess_Triangulate | aiProcess_FlipUVs | aiProcess_CalcTangentSpace);
     if (!scene || scene->mFlags & AI_SCENE_FLAGS_INCOMPLETE || !scene->mRootNode)
     {
         cout << "ERROR::ASSIMP::" << import.GetErrorString() << endl;
@@ -78,18 +78,16 @@ AsimpMesh* Model::processMesh(aiMesh* mesh, const aiScene* scene)
             vertex.Tex.y = 0.0f;
         }
 
-        //// Касательный вектор
-        //vector.x = mesh->mTangents[i].x;
-        //vector.y = mesh->mTangents[i].y;
-        //vector.z = mesh->mTangents[i].z;
-        //vertex.Tangent = vector;
+        // Касательный вектор
+        vertex.Tangent.x = mesh->mTangents[i].x;
+        vertex.Tangent.y = mesh->mTangents[i].y;
+        vertex.Tangent.z = mesh->mTangents[i].z;
 
         //// Вектор бинормали
         //vector.x = mesh->mBitangents[i].x;
         //vector.y = mesh->mBitangents[i].y;
         //vector.z = mesh->mBitangents[i].z;
         //vertex.Bitangent = vector;
-        //vertices.push_back(vertex);
         
         // Обрабатываем координаты вершин, нормали и текстурные координаты
         vertices.push_back(vertex);
@@ -117,7 +115,12 @@ AsimpMesh* Model::processMesh(aiMesh* mesh, const aiScene* scene)
     // Обрабатываем материалы
     
     aiMaterial* material = scene->mMaterials[mesh->mMaterialIndex];
-    
+    Material mat;
+	material->Get(AI_MATKEY_COLOR_AMBIENT, mat.ambient);
+	material->Get(AI_MATKEY_COLOR_DIFFUSE, mat.diffuse);
+	material->Get(AI_MATKEY_COLOR_REFLECTIVE, mat.reflect);
+	material->Get(AI_MATKEY_COLOR_SPECULAR, mat.specular);
+    resultMesh->SetMaterial(mat);
     // Мы вводим соглашение об именах сэмплеров в шейдерах. Каждая диффузная текстура будет называться 'texture_diffuseN',
     // где N - это порядковый номер от 1 до MAX_SAMPLER_NUMBER. 
     // То же самое относится и к другим текстурам:

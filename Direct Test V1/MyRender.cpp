@@ -69,6 +69,8 @@ bool MyRender::Init()
 	labirint = new Labirint();
 	wallModel = new Model(this);
 	wallModel->Init("wall.obj");
+
+	
 	labirint->Init(wallModel);
 	if (labirint->LoadFromFile("1.txt"))
 		return false;
