@@ -1,0 +1,218 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Input">
+      <UniqueIdentifier>{aa63aeec-48ea-4f74-9e63-0e312ed1312a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shaders">
+      <UniqueIdentifier>{6b6ff054-9cc8-47de-a83c-4a4c1c475366}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Textures">
+      <UniqueIdentifier>{cd3d94a8-47d9-4ed6-86f8-908a88344b6c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Meshes">
+      <UniqueIdentifier>{a9a0cd15-16a3-44a6-9a35-065b9f58ba2f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Models">
+      <UniqueIdentifier>{1c385cfa-eab3-4827-bbd3-767d67db8373}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObjects">
+      <UniqueIdentifier>{f9f38826-c99b-434a-af74-a2832a00f8eb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Render">
+      <UniqueIdentifier>{d02beddf-f408-4fb4-8e7c-42ff7cf90eac}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shaders\staticObj">
+      <UniqueIdentifier>{12f10019-da40-461d-8944-a17653bf2b41}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Labirints">
+      <UniqueIdentifier>{3cd33caf-aafe-49ba-ab18-10a2992dfbf4}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="InputHandler.cpp">
+      <Filter>Input</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="Model.cpp">
+      <Filter>Models</Filter>
+    </ClCompile>
+    <ClCompile Include="ModelList.cpp">
+      <Filter>Models</Filter>
+    </ClCompile>
+    <ClCompile Include="AsimpMesh.cpp">
+      <Filter>Models</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObject.cpp">
+      <Filter>GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="MovableGameObject.cpp">
+      <Filter>GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="MyRender.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="FireBall.cpp">
+      <Filter>Models</Filter>
+    </ClCompile>
+    <ClCompile Include="FireBallGenerator.cpp">
+      <Filter>Models</Filter>
+    </ClCompile>
+    <ClCompile Include="ParticleGenerator.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="Labirint.cpp">
+      <Filter>GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="Wall.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="InputHandler.h">
+      <Filter>Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Model.h">
+      <Filter>Models</Filter>
+    </ClInclude>
+    <ClInclude Include="ModelList.h">
+      <Filter>Models</Filter>
+    </ClInclude>
+    <ClInclude Include="AsimpMesh.h">
+      <Filter>Models</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject.h">
+      <Filter>GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="MovableGameObject.h">
+      <Filter>GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="MyRender.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="ms3dspec.h">
+      <Filter>Meshes</Filter>
+    </ClInclude>
+    <ClInclude Include="FireBall.h">
+      <Filter>Models</Filter>
+    </ClInclude>
+    <ClInclude Include="FireBallGenerator.h">
+      <Filter>Models</Filter>
+    </ClInclude>
+    <ClInclude Include="ParticleGenerator.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="Labirint.h">
+      <Filter>GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="Wall.h" />
+    <ClInclude Include="Drawable.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+    <None Include="E:\Files\илья\directx 11 примеры\lesson b1\lesson\bin\mesh.ms3d">
+      <Filter>Meshes</Filter>
+    </None>
+    <None Include="sphere.ms3d">
+      <Filter>Meshes</Filter>
+    </None>
+    <None Include="font.fnt">
+      <Filter>Textures</Filter>
+    </None>
+    <None Include="labyrinth.mtl">
+      <Filter>Meshes</Filter>
+    </None>
+    <None Include="grim.mtl">
+      <Filter>Meshes</Filter>
+    </None>
+    <None Include="LightHelper.hlsli">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="Basic.hlsli">
+      <Filter>Shaders</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="texture.png">
+      <Filter>Textures</Filter>
+    </Image>
+    <Image Include="image.png">
+      <Filter>Textures</Filter>
+    </Image>
+    <Image Include="font_0.png">
+      <Filter>Textures</Filter>
+    </Image>
+    <Image Include="GoblinStatueBooty01.png">
+      <Filter>Textures</Filter>
+    </Image>
+    <Image Include="Brick_Tut_Add_3_4.jpg">
+      <Filter>Textures</Filter>
+    </Image>
+    <Image Include="grim_arm.png">
+      <Filter>Meshes</Filter>
+    </Image>
+    <Image Include="grim_bones.png">
+      <Filter>Meshes</Filter>
+    </Image>
+    <Image Include="grim_hglass.png">
+      <Filter>Meshes</Filter>
+    </Image>
+    <Image Include="grim_hood.png">
+      <Filter>Meshes</Filter>
+    </Image>
+    <Image Include="grim_skull.png">
+      <Filter>Meshes</Filter>
+    </Image>
+    <Image Include="grim_torso01.png">
+      <Filter>Meshes</Filter>
+    </Image>
+    <Image Include="grim_torso02.png">
+      <Filter>Meshes</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="MeshPS.hlsl">
+      <Filter>Shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="MeshVS.hlsl">
+      <Filter>Shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="ParticlePS.hlsl">
+      <Filter>Shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="ParticleVS.hlsl">
+      <Filter>Shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="BitmapFontPS.hlsl">
+      <Filter>Shaders\staticObj</Filter>
+    </FxCompile>
+    <FxCompile Include="BitmapFontVS.hlsl">
+      <Filter>Shaders\staticObj</Filter>
+    </FxCompile>
+    <FxCompile Include="imagePS.hlsl">
+      <Filter>Shaders\staticObj</Filter>
+    </FxCompile>
+    <FxCompile Include="imageVS.hlsl">
+      <Filter>Shaders\staticObj</Filter>
+    </FxCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Object Include="labyrinth.obj">
+      <Filter>Meshes</Filter>
+    </Object>
+    <Object Include="grim.obj">
+      <Filter>Meshes</Filter>
+    </Object>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="1.txt">
+      <Filter>Labirints</Filter>
+    </Text>
+  </ItemGroup>
+</Project>

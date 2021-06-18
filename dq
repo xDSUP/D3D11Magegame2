@@ -1,0 +1,114 @@
+[33mcommit a976b2418975b30388e27ccffb05c42fed376ef0[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m)[m
+Merge: 39dd2f2 c71ea91
+Author: ilya.elfimow@yandex.ru <ilya.elfimow@yandex.ru>
+Date:   Thu Jun 17 01:01:20 2021 +0300
+
+    нЯ
+
+[33mcommit 39dd2f2c7ff8a774a1ca6f67497fde3f53e20313[m
+Author: ilya.elfimow@yandex.ru <ilya.elfimow@yandex.ru>
+Date:   Thu Jun 17 01:00:01 2021 +0300
+
+    нЯ
+
+[33mcommit c71ea917575a02a4db68f7ecbb7d9061e8486aed[m
+Author: ilya.elfimow@yandex.ru <ilya.elfimow@yandex.ru>
+Date:   Thu Jun 17 00:57:39 2021 +0300
+
+    Много источников света, но что-то поломалось
+
+[33mcommit 8d5f58ce7a72525dffec3c4f926e73802ae4a26f[m
+Author: ilya.elfimow@yandex.ru <ilya.elfimow@yandex.ru>
+Date:   Wed Jun 16 00:52:40 2021 +0300
+
+    Свет работает ЕЕЕЕ
+
+[33mcommit 9da153b0f1bd052014f4587aaec1da9e2ec0593a[m
+Author: ilya.elfimow@yandex.ru <ilya.elfimow@yandex.ru>
+Date:   Tue Jun 15 17:06:23 2021 +0300
+
+    Начало работы со светом
+
+[33mcommit eb2423160014146540cd27b191cfce9b54deb0e4[m
+Author: ilya.elfimow@yandex.ru <ilya.elfimow@yandex.ru>
+Date:   Mon Jun 14 18:58:01 2021 +0300
+
+    Добавил asimp, Модели лабиринта и игрока
+
+[33mcommit 88b6d2379cb1a466e9ec5e252f1313888124cdc8[m
+Author: ilya.elfimow@yandex.ru <ilya.elfimow@yandex.ru>
+Date:   Sat Jun 12 01:45:20 2021 +0300
+
+    Рабочая версия фраймворка с камерой
+
+[33mcommit 49d7e38fdf9395f456099f9bf4e7960f0a1aa7f8[m[33m ([m[1;32mNormVetka[m[33m)[m
+Author: ilya.elfimow@yandex.ru <ilya.elfimow@yandex.ru>
+Date:   Tue Mar 23 18:15:26 2021 +0300
+
+    карусель
+
+[33mcommit 6df54c6653eed66945e11443558a351723024feb[m
+Author: ilya.elfimow@yandex.ru <ilya.elfimow@yandex.ru>
+Date:   Tue Mar 23 17:48:17 2021 +0300
+
+    Вынес загрузку модели в фреймворк.
+
+[33mcommit 84503f205ac4a4078d9ce7212203077e1f4d8f14[m
+Author: ilya.elfimow@yandex.ru <ilya.elfimow@yandex.ru>
+Date:   Tue Mar 23 15:03:51 2021 +0300
+
+    вертим модельку
+
+[33mcommit af4e76ebebcdd48c30f94ea7fd7e2ed37a40ebc6[m
+Author: ilya.elfimow@yandex.ru <ilya.elfimow@yandex.ru>
+Date:   Sat Mar 20 23:06:51 2021 +0300
+
+    на кубик натянута текстурка
+
+[33mcommit 39819b10c11acc948c8830085a1ce1188d473516[m
+Author: ilya.elfimow@yandex.ru <ilya.elfimow@yandex.ru>
+Date:   Sat Mar 20 15:01:45 2021 +0300
+
+    Тестовый вариант с 2 кубиками
+
+[33mcommit 005d0682a73cf941b0b229926d5ec1e6fe1a3f17[m
+Author: ilya.elfimow@yandex.ru <ilya.elfimow@yandex.ru>
+Date:   Sat Mar 20 15:01:27 2021 +0300
+
+    добавлен буфер глубины и функция загрузки шейдера
+
+[33mcommit 6b2ce7917f2d617553b9800897fab3dab5e8d743[m
+Author: ilya.elfimow@yandex.ru <ilya.elfimow@yandex.ru>
+Date:   Sat Mar 20 01:59:28 2021 +0300
+
+    кубик летает и меняет цвет
+
+[33mcommit 254be317adfaaae2bc934f4b92e25e418bb3e57a[m
+Author: ilya.elfimow@yandex.ru <ilya.elfimow@yandex.ru>
+Date:   Fri Mar 19 21:53:40 2021 +0300
+
+    Кубик вертится
+
+[33mcommit e53646a922f64bb129d567be06557ba62833096d[m
+Author: ilya.elfimow@yandex.ru <ilya.elfimow@yandex.ru>
+Date:   Tue Mar 16 01:55:27 2021 +0300
+
+    Поправлены настройки проекта
+
+[33mcommit b13144b4cb97d13bdf628c94ad4380c4e3d95d72[m
+Author: ilya.elfimow@yandex.ru <ilya.elfimow@yandex.ru>
+Date:   Mon Mar 15 19:59:45 2021 +0300
+
+    первый треугольник
+
+[33mcommit 6c3c1abbc8e61c93a65e1ff75438d75ec99d26b6[m
+Author: ilya.elfimow@yandex.ru <ilya.elfimow@yandex.ru>
+Date:   Mon Mar 15 00:11:11 2021 +0300
+
+    Немного расширенная 1 версия
+
+[33mcommit 9b70e39c7947009bbdd7d0cc3031f8e4309ed934[m
+Author: xD_HOHOHO <xD_HOHOHO@HOME-PC>
+Date:   Mon Mar 15 00:09:38 2021 +0300
+
+    Добавьте GITIGNORE- и GITATTRIBUTES-файлы.
