@@ -110,9 +110,9 @@ void ParticleGenerator::Update(float frameTime, XMFLOAT3 GameObjectPos, unsigned
 		if (p.Life > 0.0f)
 		{	// если частица еще жива, то обновляем её значения
 
-			p.Position.x += p.Velocity.x * frameTime;
-			p.Position.y += p.Velocity.y * frameTime;
-			p.Position.z += p.Velocity.z * frameTime;
+			p.Position.x += p.Velocity.x * frameTime/1000;
+			p.Position.y += p.Velocity.y * frameTime / 1000;
+			p.Position.z += p.Velocity.z * frameTime / 1000;
 			p.Color.w -= frameTime * 1.0f;
 		}
 
@@ -151,7 +151,8 @@ void ParticleGenerator::RespawnParticle(Particle& particle, XMFLOAT3 objectPos, 
 	XMVECTOR pos = XMLoadFloat3(&objectPos);
 
 	pos += XMLoadFloat3(&offset);
-	pos += SimpleXMVector(random);
+	//pos += SimpleXMVector(random);
+	pos += XMVectorSet(((rand() % 100) - 50) / 100.0f, ((rand() % 100) - 50) / 100.0f, ((rand() % 100) - 50) / 100.0f, 0);
 
 	XMStoreFloat4(&(particle.Position), pos);
 	particle.Size = size;

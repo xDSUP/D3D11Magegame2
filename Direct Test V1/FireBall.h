@@ -19,6 +19,19 @@ public:
 		light.range = 5.0f;
 	}
 
+	XMFLOAT3 center = XMFLOAT3(
+		pos.x + 0.2,
+		pos.y + 0.2,
+		pos.z + 0.2
+	);
+	
+	void InitColider()
+	{
+		
+		XMFLOAT3 extents = XMFLOAT3(0.5f, 0.5f, 0.5f);
+		colider = BoundingBox(center, extents);
+	}
+	
 	void InitParticles(ParticleGenerator* gen)
 	{
 		particles = gen;
@@ -46,7 +59,12 @@ public:
 
 		light.position = pos;
 		model->Translate(pos.x, pos.y, pos.z);
-		particles->Update(frameTime, pos, 30);
+		particles->Update(frameTime, pos, 50);
+		colider.Center = XMFLOAT3(
+			pos.x + center.x, 
+			pos.y + center.y,
+			pos.z + center.z
+		);
 
 	}
 

@@ -86,6 +86,8 @@ public:
 	Player* GetPlayer();
 	XMFLOAT3 GetWorldCords(int x, int y);
 
+
+
 private:
 	ModelList	modelList;
 	

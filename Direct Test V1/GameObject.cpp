@@ -26,7 +26,6 @@ XMFLOAT3 GameObject::GetVelosity()
 	return velosity;
 }
 
-
 XMFLOAT3 GameObject::GetPosition()
 {
 	return pos;
@@ -36,4 +35,12 @@ XMFLOAT3 GameObject::GetRotation()
 {
 	return rot;
 }
+
+void GameObject::InitColider(XMFLOAT3 center, XMFLOAT3 extents)
+{
+	this->center = center;
+	this->extents = extents;
+	colider = BoundingBox(XMFLOAT3(pos.x + center.x, pos.y + center.y, pos.z + center.z), extents);
+}
+
 

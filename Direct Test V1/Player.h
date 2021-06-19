@@ -20,12 +20,12 @@ public:
 		this->render = render;
 		
 		torchLight.position = XMFLOAT3(0.0f, 0.0f, -10.0f);
-		torchLight.ambient = XMFLOAT4(0.3f, 0.3f, 0.3f, 1.0f);
+		torchLight.ambient = XMFLOAT4(0.1f, 0.1f, 0.1f, 1.0f);
 		torchLight.diffuse = XMFLOAT4(1.0f, 0.55f, 0.0f, 1.0f);
 		torchLight.specular = XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f);
 		torchLight.att = XMFLOAT3(0.0f, 0.1f, 0.2f);
 		//m_PointLight.color = XMFLOAT3(0.5f, 0.1f, 0.0f);
-		torchLight.range = 10.0f;
+		torchLight.range = 11.0f;
 		torchPos = XMFLOAT3(1.1f, 4.6f, 1.22f);
 		
 		return model->Init(path);
@@ -36,6 +36,11 @@ public:
 		return model;
 	}
 
+	bool IsMoved()
+	{
+		return moveBack || moveForward;
+	}
+	
 	XMFLOAT3 torchPos;
 
 	void Draw(CXMMATRIX view) override
@@ -52,6 +57,11 @@ public:
 			pos.z += (forwardMoveSpeed - backMoveSpeed) * cosf(rad);
 		}
 		model->Translate(pos.x , pos.y, pos.z);
+
+		colider.Center.x = pos.x + center.x;
+		colider.Center.y = pos.y + center.y;
+		colider.Center.z = pos.z + center.z;
+		
 		XMMATRIX lightPos = XMMatrixIdentity();
 		lightPos *= XMMatrixTranslation(torchPos.x, torchPos.y, torchPos.z);
 

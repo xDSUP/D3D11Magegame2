@@ -200,6 +200,7 @@
     <None Include="Basic.hlsli">
       <FileType>Document</FileType>
     </None>
+    <None Include="bigFlout.mtl" />
     <None Include="E:\Files\илья\directx 11 примеры\lesson b1\lesson\bin\mesh.ms3d" />
     <None Include="font.fnt" />
     <None Include="grim.mtl" />
@@ -207,6 +208,8 @@
     <None Include="LightHelper.hlsli" />
     <None Include="packages.config" />
     <None Include="sphere.ms3d" />
+    <None Include="target.mtl" />
+    <None Include="wallBig.mtl" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Brick_Tut_Add_3_4.jpg" />
@@ -219,6 +222,13 @@
     <Image Include="grim_skull.png" />
     <Image Include="grim_torso01.png" />
     <Image Include="grim_torso02.png" />
+    <Image Include="ground-ao.tif" />
+    <Image Include="ground-diffuse.png" />
+    <Image Include="ground-displacement.tif" />
+    <Image Include="ground-normal.png" />
+    <Image Include="ground-specular.png" />
+    <Image Include="ground-texture.jpg" />
+    <Image Include="humans1.jpg" />
     <Image Include="image.png" />
     <Image Include="texture.png" />
   </ItemGroup>
@@ -312,11 +322,29 @@
     </FxCompile>
   </ItemGroup>
   <ItemGroup>
+    <Object Include="bigFlout.obj">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </Object>
     <Object Include="grim.obj">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </Object>
     <Object Include="labyrinth.obj">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </Object>
+    <Object Include="target.obj">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </Object>
+    <Object Include="wallBig.obj">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </Object>

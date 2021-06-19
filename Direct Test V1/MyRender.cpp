@@ -92,6 +92,7 @@ bool MyRender::Init()
 	player->SetSpeedMove(4);
 	player->SetMaxFrameTime(3);
 	player->SetPosition(labirint->spawnPlayer.x, labirint->spawnPlayer.y, labirint->spawnPlayer.z);
+	player->InitColider(XMFLOAT3(1, 4, 0.5), XMFLOAT3(1, 4, 0.5));
 	
 	font = new BitmapFont(this);
 	if(!font->Init("font.fnt"))
@@ -153,8 +154,8 @@ void MyRender::updateAndDrawFireBalls(XMMATRIX viewMatrix)
 		std::advance(it, 1);
 		for (FireBall* fireBall : fireBalls)
 		{
-			
 			fireBall->UpdatePos(timer.GetFrameTime());
+			
 			it._Ptr->_Myval->light.position = fireBall->light.position;
 			fireBall->Draw(viewMatrix);
 			
@@ -166,7 +167,39 @@ void MyRender::updateAndDrawFireBalls(XMMATRIX viewMatrix)
 			}
 			else
 			{
-				std::advance(it, 1);
+				bool intersect = false;
+				for (auto wall : labirint->walls)
+				{
+					if(wall->colider.Intersects(fireBall->colider))
+					{
+						sLog->Debug("Фаер(%.3lf, %.3lf, %.3lf) пересекся со стеной(%.3lf, %.3lf, %.3lf)",
+							fireBall->GetPosition().x, fireBall->GetPosition().y, fireBall->GetPosition().z,
+							wall->GetPosition().x, wall->GetPosition().y, wall->GetPosition().z);
+						intersect = true;
+						break;
+					}
+				}
+				for (auto target : labirint->targets)
+				{
+					if (target->colider.Intersects(fireBall->colider))
+					{
+						sLog->Debug("Фаер(%.3lf, %.3lf, %.3lf) пересекся с врагом(%.3lf, %.3lf, %.3lf)",
+							fireBall->GetPosition().x, fireBall->GetPosition().y, fireBall->GetPosition().z,
+							target->GetPosition().x, target->GetPosition().y, target->GetPosition().z);
+						intersect = true;
+						break;
+					}
+
+				}
+				if(intersect)
+				{
+					delFireballs.push_back(fireBall);
+					it = m_PointLights.erase(it);
+				}
+				else
+				{
+					std::advance(it, 1);
+				}
 			}
 			i++;
 		}
@@ -175,7 +208,7 @@ void MyRender::updateAndDrawFireBalls(XMMATRIX viewMatrix)
 		{
 			fireBalls.remove(fireBall);
 			//std::advance(it, iter._Ptr->_Myval); // <-- advance ��������� ���������� �������� �� k �������
-			
+			delete fireBall->particles;
 			// <--- ������ �������� �� k+1 �������, ����� it ��� *
 			delete fireBall;
 		}
@@ -205,7 +238,29 @@ int MyRender::drawLabirint(XMMATRIX viewMatrix)
 
 void MyRender::drawPlayer(XMMATRIX viewMatrix)
 {
+	bool intersect = false;
+	if(player->IsMoved())
+	{
+		for (auto wall : labirint->walls)
+		{
+			if (wall->colider.Intersects(player->colider))
+			{
+				sLog->Debug("Фраер(%.3lf, %.3lf, %.3lf) пересекся со стеной(%.3lf, %.3lf, %.3lf)",
+					player->GetPosition().x, player->GetPosition().y, player->GetPosition().z,
+					wall->GetPosition().x, wall->GetPosition().y, wall->GetPosition().z);
+				intersect = true;
+				break;
+			}
+		}
+		if(intersect)
+		{
+			player->SetMoveBack(true);
+			player->SetMoveForward(false);
+		}
+	}
 	player->Draw(viewMatrix);
+	if (intersect)
+		player->SetMoveBack(false);
 
 	mesh->Identity();
 	mesh->Scale(0.5, 0.5, 0.5);
@@ -232,8 +287,6 @@ bool MyRender::Draw()
 	
 	flourModel->Draw(viewMatrix);
 	
-	//labirint->Draw(viewMatrix);
-
 	drawPlayer(viewMatrix);
 	
 	TurnOnAlphaBlending();
@@ -252,9 +305,7 @@ bool MyRender::Draw()
 	textNumSphere->SetText(t);
 	textNumSphere->Draw(1.0f, 1.0f, 1.0f, 20.0f, 10.0f);
 
-	t = L"Cam: x = " + intToStr(cam.GetPosition().x) + 
-		L" y = " + intToStr(cam.GetPosition().y) + 
-		L" z = " + intToStr(cam.GetPosition().z);
+	t = L"Врагов: " + intToStr(labirint->targets.size());
 	textCamCoord->SetText(t);
 	textCamCoord->Draw(1.0f, 1.0f, 1.0f, 20.0f, 30.0f);
 	
@@ -296,7 +347,7 @@ XMFLOAT3 MyRender::GetWorldCords(int x, int y)
 
 	XMVECTOR vPickRayOrig = XMVectorSet(
 		XMVectorGetByIndex(m.r[3], 0),
-		XMVectorGetByIndex(m.r[3], 1),
+		XMVectorGetByIndex(m.r[3], 1)-2, // смещение камеры вниз, чтобы поднять плоскость пола
 		XMVectorGetByIndex(m.r[3], 2),
 		0
 	);

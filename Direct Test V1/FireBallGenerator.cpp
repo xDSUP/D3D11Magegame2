@@ -15,6 +15,7 @@ FireBall* FireBallGenerator::Generate(XMFLOAT3 pos, XMFLOAT3 rot, int lifeTime)
 	result->model = model;
 	result->SetSpeedMove(0.1);
 	result->SetMaxFrameTime(0.012);
+	result->InitColider();
 
 	return result;
 }

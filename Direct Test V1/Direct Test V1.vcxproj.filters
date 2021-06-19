@@ -147,6 +147,15 @@
     <None Include="Basic.hlsli">
       <Filter>Shaders</Filter>
     </None>
+    <None Include="bigFlout.mtl">
+      <Filter>Meshes</Filter>
+    </None>
+    <None Include="target.mtl">
+      <Filter>Meshes</Filter>
+    </None>
+    <None Include="wallBig.mtl">
+      <Filter>Meshes</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Image Include="texture.png">
@@ -183,6 +192,27 @@
       <Filter>Meshes</Filter>
     </Image>
     <Image Include="grim_torso02.png">
+      <Filter>Meshes</Filter>
+    </Image>
+    <Image Include="ground-ao.tif">
+      <Filter>Meshes</Filter>
+    </Image>
+    <Image Include="ground-diffuse.png">
+      <Filter>Meshes</Filter>
+    </Image>
+    <Image Include="ground-displacement.tif">
+      <Filter>Meshes</Filter>
+    </Image>
+    <Image Include="ground-normal.png">
+      <Filter>Meshes</Filter>
+    </Image>
+    <Image Include="ground-specular.png">
+      <Filter>Meshes</Filter>
+    </Image>
+    <Image Include="ground-texture.jpg">
+      <Filter>Meshes</Filter>
+    </Image>
+    <Image Include="humans1.jpg">
       <Filter>Meshes</Filter>
     </Image>
   </ItemGroup>
@@ -223,6 +253,15 @@
       <Filter>Meshes</Filter>
     </Object>
     <Object Include="grim.obj">
+      <Filter>Meshes</Filter>
+    </Object>
+    <Object Include="bigFlout.obj">
+      <Filter>Meshes</Filter>
+    </Object>
+    <Object Include="target.obj">
+      <Filter>Meshes</Filter>
+    </Object>
+    <Object Include="wallBig.obj">
       <Filter>Meshes</Filter>
     </Object>
   </ItemGroup>

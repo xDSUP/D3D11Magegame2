@@ -13,6 +13,7 @@ public:
 	}
 	void Draw(CXMMATRIX viewMatrix) override;
 
+	
 	Model* model;
 };
 
