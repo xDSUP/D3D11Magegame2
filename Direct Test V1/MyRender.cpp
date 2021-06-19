@@ -73,6 +73,12 @@ bool MyRender::Init()
 	targetModel = new Model(this);
 	targetModel->Init("target.obj");
 
+	HRESULT hr = D3DX11CreateShaderResourceViewFromFile(m_pd3dDevice, w("fireBallParticle.jpg"), NULL, NULL, &fireBallParticleTexture, NULL);
+	if (FAILED(hr))
+	{
+		Log::Get()->Err("Не удалось загрузить текстуру %ls", "fireBallParticle.png");
+		return false;
+	}
 	
 	labirint->Init(wallModel, targetModel);
 	if (labirint->LoadFromFile("1.txt"))
@@ -101,8 +107,10 @@ bool MyRender::Init()
 
 	flourModel = new Model(this);
 	
-	if (!flourModel->Init("bigFlour.obj"))
+	if (!flourModel->Init("bigFlout.obj"))
 		return false;
+
+	flourModel->Scale(-1, 1, -1);
 
 	if(!modelList.Init(10))
 		return false;
@@ -116,7 +124,7 @@ bool MyRender::Init()
 	initLight();
 
 	torchParticleGenerator = new ParticleGenerator(this);
-	if (!torchParticleGenerator->Init(w("particle.png"), 200, XMFLOAT3(0, 0.01f, 0), 1))
+	if (!torchParticleGenerator->Init(w("particle.png"), 200, XMFLOAT3(0, 0.01f, 0), 0.2))
 		return false;
 	torchParticleGenerator->model = mesh;
 	return true;
@@ -180,12 +188,17 @@ int MyRender::drawLabirint(XMMATRIX viewMatrix)
 	for (int i = 0; i < labirint->walls.size(); i++)
 	{
 		auto pos = labirint->walls[i]->GetPosition();
-		bool renderModel = frustum.CheckCube(pos.x, pos.y, pos.z, 0.5);
+		bool renderModel = frustum.CheckRectangle(pos.x, pos.y, pos.z, 3, 1, 10);
 		if(renderModel)
 		{
+			rendered++;
 			labirint->walls[i]->Draw(viewMatrix);
 		}
-		rendered++;
+		
+	}
+	for (size_t i = 0; i < labirint->targets.size(); i++)
+	{
+		labirint->targets[i]->Draw(viewMatrix);
 	}
 	return rendered;
 }
@@ -216,19 +229,18 @@ bool MyRender::Draw()
 	frustum.ConstructFrustum(1000, m_Projection, viewMatrix);
 
 	int renderCount = drawLabirint(viewMatrix);;
+	
 	flourModel->Draw(viewMatrix);
 	
 	//labirint->Draw(viewMatrix);
 
 	drawPlayer(viewMatrix);
 	
-	updateAndDrawFireBalls(viewMatrix);
 	TurnOnAlphaBlending();
 
 	m_renderstate->TurnRasterNoCull();
+	updateAndDrawFireBalls(viewMatrix);
 
-	
-	
 	torchParticleGenerator->Update(frameTime, player->GetTorchLight()->position, 2);
 	torchParticleGenerator->Draw(viewMatrix);
 

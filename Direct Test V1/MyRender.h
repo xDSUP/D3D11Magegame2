@@ -68,6 +68,17 @@ public:
 
 	void AddFireBallToRender(FireBall* fireball)
 	{
+		float speedParticle = 0.5;
+		auto p = new ParticleGenerator(this);
+		float rad = convertDegreeToRad(fireball->GetRotation().y);
+		auto particleVel = XMFLOAT3(
+			sinf(rad) * speedParticle * -1,
+			0,
+			cosf(rad) * speedParticle * -1
+		);
+		p->Init(fireBallParticleTexture, 300, particleVel, 0.11, 150);
+		fireball->InitParticles(p);
+
 		fireBalls.push_back(fireball);
 		AddPointLight(fireball->light);
 	}
@@ -86,9 +97,12 @@ private:
 	Model* wallModel;
 	Model* flourModel;
 	Model* targetModel;
+
+	ID3D11ShaderResourceView* fireBallParticleTexture;
 	StaticMesh* mesh;
 	list<FireBall*> fireBalls;
 	ParticleGenerator* torchParticleGenerator;
+	
 
 	BitmapFont* font;
 	Text*		textNumSphere;

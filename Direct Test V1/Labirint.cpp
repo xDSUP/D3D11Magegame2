@@ -42,6 +42,7 @@ bool Labirint::LoadFromFile(const char* path)
                     newTarget = new Target(modelOfTarget);
                     newTarget->SetRotation(0, 45, 0);
                     newTarget->SetPosition(i * modelSize, 0, j * modelSize);
+                    targets.push_back(newTarget);
                     break;
                 case 's':
                     this->spawnPlayer = XMFLOAT3(i * modelSize, 0, j * modelSize);

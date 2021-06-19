@@ -4,11 +4,12 @@
 
 
 
-bool ParticleGenerator::Init(wchar_t* name, int amount, XMFLOAT3 velosity, int size)
+bool ParticleGenerator::Init(wchar_t* name, int amount, XMFLOAT3 velosity, float size, float life)
 {
 	this->velosity = velosity;
 	this->amount = amount;
 	this->size = size;
+	this->life = life;
 	
 	shader = new Shader(render);
 	shader->AddInputElementDesc("POSITION", DXGI_FORMAT_R32G32B32_FLOAT);
@@ -18,6 +19,28 @@ bool ParticleGenerator::Init(wchar_t* name, int amount, XMFLOAT3 velosity, int s
 		return false;
 	if (!shader->AddTexture(name))
 		return false;
+	if (!m_InitBuffers())
+		return false;
+
+	for (unsigned int i = 0; i < amount; ++i)
+		particles.push_back(Particle());
+	return true;
+}
+
+bool ParticleGenerator::Init(ID3D11ShaderResourceView* texture, int amount, XMFLOAT3 velosity, float size, float life)
+{
+	this->velosity = velosity;
+	this->amount = amount;
+	this->size = size;
+	this->life = life;
+
+	shader = new Shader(render);
+	shader->AddInputElementDesc("POSITION", DXGI_FORMAT_R32G32B32_FLOAT);
+	shader->AddInputElementDesc("TEXCOORD", DXGI_FORMAT_R32G32_FLOAT);
+
+	if (!shader->CreateShader(w("ParticleVS.hlsl"), w("ParticlePS.hlsl")))
+		return false;
+	shader->AddTexture(texture);
 	if (!m_InitBuffers())
 		return false;
 
@@ -133,7 +156,7 @@ void ParticleGenerator::RespawnParticle(Particle& particle, XMFLOAT3 objectPos, 
 	XMStoreFloat4(&(particle.Position), pos);
 	particle.Size = size;
 	particle.Color = XMFLOAT4(rColor, rColor, rColor, 0.5f);
-	particle.Life = 200.0f;
+	particle.Life = life;
 	particle.Velocity = XMFLOAT4(velosity.x, velosity.y, velosity.z, 1);
 }
 

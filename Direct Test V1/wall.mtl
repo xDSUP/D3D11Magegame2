@@ -11,4 +11,4 @@ Ni 1.450000
 d 1.000000
 illum 3
 map_Bump ground-normal.png
-map_Kd C:\\Users\\xD_HOHOHO\\source\\repos\\C++\\D3D11 Magegame\\Direct Test V1\\brick-texture.png
+map_Kd brick-texture.png

@@ -67,7 +67,7 @@ public:
 		torchLight.position.z = XMVectorGetByIndex(lightPos.r[3], 2);
 		
 		//sLog->Debug("Xpos:%lf | Ypos:%lf | Zpos: %lf rad: %lf", pos.x, pos.y, pos.z, rot.y);
-		sLog->Debug("Xpos:%lf | Ypos:%lf | Zpos: %lf rad: %lf", torchPos.x, torchPos.y, torchPos.z);
+		//sLog->Debug("Xpos:%lf | Ypos:%lf | Zpos: %lf rad: %lf", torchPos.x, torchPos.y, torchPos.z);
 		(render->GetPointLights().begin()._Ptr->_Myval)->light.position = this->GetTorchLight()->position;
 		model->Draw(view);
 	}

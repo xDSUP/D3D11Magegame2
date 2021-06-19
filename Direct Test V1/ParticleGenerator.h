@@ -35,7 +35,8 @@ public:
 		this->render = render;
 	}
 
-	bool Init(wchar_t* name, int amount, XMFLOAT3 velosity, int size);
+	bool Init(wchar_t* name, int amount, XMFLOAT3 velosity, float size, float life = 200);
+	bool Init(ID3D11ShaderResourceView* texture, int amount, XMFLOAT3 velosity, float size, float life = 200);
 	void Draw(CXMMATRIX viewmatrix);
 	void Close();
 	
@@ -47,6 +48,7 @@ public:
 	int amount;
 	XMFLOAT3 velosity;
 	float size;
+	float life;
 	unsigned int VAO;
 	std::vector<Particle> particles;
 
