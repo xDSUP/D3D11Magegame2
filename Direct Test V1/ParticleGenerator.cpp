@@ -146,7 +146,6 @@ void ParticleGenerator::RespawnParticle(Particle& particle, XMFLOAT3 objectPos, 
 
 void ParticleGenerator::Draw(CXMMATRIX viewMatrix)
 {
-	
 	for (Particle particle : this->particles)
 	{
 		if (particle.Life > 0.0f)
@@ -158,8 +157,10 @@ void ParticleGenerator::Draw(CXMMATRIX viewMatrix)
 			m_SetShaderParameters(WVP, particle.Color);
 			//sLog->Debug("Xpos:%lf | Ypos:%lf | Zpos: %lf rad: %lf", particle.Position.x, particle.Position.y, particle.Position.z);
 			m_RenderShader();
+			
 		}
 	}
+	render->GetContext()->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
 }
 
 void ParticleGenerator::m_RenderBuffers()
@@ -168,7 +169,7 @@ void ParticleGenerator::m_RenderBuffers()
 	unsigned int offset = 0;
 	render->GetContext()->IASetVertexBuffers(0, 1, &m_vertexBuffer, &stride, &offset);
 	render->GetContext()->IASetIndexBuffer(m_indexBuffer, DXGI_FORMAT_R32_UINT, 0);
-	//render->GetContext()->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
+	//render->GetContext()->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_POINTLIST);
 }
 
 void ParticleGenerator::m_SetShaderParameters(CXMMATRIX WVP, XMFLOAT4 color)

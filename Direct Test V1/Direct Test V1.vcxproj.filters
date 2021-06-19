@@ -70,6 +70,9 @@
     <ClCompile Include="Wall.cpp">
       <Filter>GameObjects</Filter>
     </ClCompile>
+    <ClCompile Include="Target.cpp">
+      <Filter>GameObjects</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="InputHandler.h">
@@ -115,6 +118,9 @@
       <Filter>Render</Filter>
     </ClInclude>
     <ClInclude Include="Wall.h">
+      <Filter>GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="Target.h">
       <Filter>GameObjects</Filter>
     </ClInclude>
   </ItemGroup>

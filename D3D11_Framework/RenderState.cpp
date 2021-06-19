@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "RenderState.h"
 #include "macros.h"
+#include "../Direct Test V1/AsimpMesh.h"
 
 using namespace D3D11Framework;
 
@@ -26,6 +27,8 @@ bool RenderState::Init()
 	if ( !m_createblendingstate() )
 		return false;
 	if ( !m_createsamplerstate() )
+		return false;
+	if (!m_createrasterstate())
 		return false;
 	
 	TurnZBufferOn();
@@ -115,6 +118,32 @@ bool RenderState::m_createsamplerstate()
 	return true;
 }
 
+bool RenderState::m_createrasterstate()
+{
+	D3D11_RASTERIZER_DESC rasterizerDesc;
+	ZeroMemory(&rasterizerDesc, sizeof(rasterizerDesc));
+
+	rasterizerDesc.FillMode = D3D11_FILL_WIREFRAME;
+	rasterizerDesc.CullMode = D3D11_CULL_NONE;
+	rasterizerDesc.FrontCounterClockwise = false;
+	rasterizerDesc.DepthClipEnable = true;
+	HRFalse(m_pd3dDevice->CreateRasterizerState(&rasterizerDesc, &RSWireframe));
+
+	rasterizerDesc.FillMode = D3D11_FILL_SOLID;
+	rasterizerDesc.CullMode = D3D11_CULL_NONE;
+	rasterizerDesc.FrontCounterClockwise = false;
+	rasterizerDesc.DepthClipEnable = true;
+	HRFalse(m_pd3dDevice->CreateRasterizerState(&rasterizerDesc, &RSNoCull));
+
+	rasterizerDesc.FillMode = D3D11_FILL_SOLID;
+	rasterizerDesc.CullMode = D3D11_CULL_BACK;
+	rasterizerDesc.FrontCounterClockwise = false;
+	rasterizerDesc.DepthClipEnable = true;
+	HRFalse(m_pd3dDevice->CreateRasterizerState(&rasterizerDesc, &RSNormal));
+
+	return true;
+}
+
 void RenderState::Close()
 {
 	_RELEASE(m_pAlphaEnableBlendingState);
@@ -172,4 +201,19 @@ void RenderState::TurnOffAlphaBlending()
 		m_pImmediateContext->OMSetBlendState(m_pAlphaDisableBlendingState, blendFactor, 0xffffffff);
 		m_alphaenable = false;
 	}
+}
+
+void RenderState::TurnRasterNormal()
+{
+	m_pImmediateContext->RSSetState(RSNormal);
+}
+
+void RenderState::TurnRasterNoCull()
+{
+	m_pImmediateContext->RSSetState(RSNoCull);
+}
+
+void RenderState::TurnRasterWireframe()
+{
+	m_pImmediateContext->RSSetState(RSWireframe);
 }

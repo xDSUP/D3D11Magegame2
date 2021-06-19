@@ -175,6 +175,7 @@
     <ClCompile Include="MyRender.cpp" />
     <ClCompile Include="ParticleGenerator.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="Target.cpp" />
     <ClCompile Include="Wall.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -192,6 +193,7 @@
     <ClInclude Include="MyRender.h" />
     <ClInclude Include="ParticleGenerator.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="Target.h" />
     <ClInclude Include="Wall.h" />
   </ItemGroup>
   <ItemGroup>

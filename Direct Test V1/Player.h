@@ -26,7 +26,7 @@ public:
 		torchLight.att = XMFLOAT3(0.0f, 0.1f, 0.2f);
 		//m_PointLight.color = XMFLOAT3(0.5f, 0.1f, 0.0f);
 		torchLight.range = 10.0f;
-		torchPos = XMFLOAT3(0.5f, 1.4f, 0.6f);
+		torchPos = XMFLOAT3(1.1f, 4.6f, 1.22f);
 		
 		return model->Init(path);
 	}
@@ -42,7 +42,7 @@ public:
 	{
 		model->Identity();
 		UpdatePosition();
-		model->Scale(0.02, 0.02, 0.02);
+		model->Scale(0.06, 0.06, 0.06);
 
 		float rad = convertDegreeToRad(rot.y);
 		model->Rotate(rad, 0, 1, 0);

@@ -9,6 +9,7 @@ namespace D3D11Framework
 	public:
 		RenderState(ID3D11Device *pd3dDevice, ID3D11DeviceContext *pImmediateContext);
 
+		
 		bool Init();
 		void Close();
 
@@ -19,19 +20,29 @@ namespace D3D11Framework
 		void TurnOnAlphaAddBlending();
 		void TurnOffAlphaBlending();
 
+		void TurnRasterNormal();
+		void TurnRasterNoCull();
+		void TurnRasterWireframe();
+
 	private:
 		bool m_createdepthstencilstate();
 		bool m_createblendingstate();
 		bool m_createsamplerstate();
-
+		bool m_createrasterstate();
+		
 		ID3D11Device *m_pd3dDevice;
 		ID3D11DeviceContext *m_pImmediateContext;
 
 		ID3D11DepthStencilState *m_pDepthEnableStencilState;
 		ID3D11DepthStencilState *m_pDepthDisabledStencilState;
+		
 		ID3D11BlendState *m_pAlphaEnableBlendingState;
 		ID3D11BlendState *m_pAlphaDisableBlendingState;
 		ID3D11BlendState* m_pAlphaEnableAddBlendingState;
+
+		ID3D11RasterizerState*  RSWireframe;
+		ID3D11RasterizerState* RSNoCull;
+		ID3D11RasterizerState* RSNormal;
 
 		ID3D11SamplerState *m_pSampleState;
 

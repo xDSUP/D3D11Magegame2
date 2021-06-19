@@ -37,6 +37,11 @@ namespace D3D11Framework
 		void TurnOnAlphaBlending();
 		void TurnOffAlphaBlending();
 
+		RenderState* GetRenderState()
+		{
+			return m_renderstate;
+		}
+
 		XMMATRIX GetProjection()
 		{
 			return m_Projection;

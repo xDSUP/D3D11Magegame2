@@ -7,9 +7,10 @@ class FireBall :
     public MovableGameObject
 {
 public:
-	void Init()
+	void InitPointLight()
 	{
-		light.position = XMFLOAT3(0.0f, 0.0f, 0.0f);
+		
+		light.position = XMFLOAT3(pos.x, pos.y, pos.z);
 		light.ambient = XMFLOAT4(0.3f, 0.3f, 0.3f, 1.0f);
 		light.diffuse = XMFLOAT4(1.0f, 0.55f, 0.0f, 1.0f);
 		light.specular = XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f);

@@ -2,20 +2,23 @@
 #include <fstream>
 #include <iostream>
 
-bool Labirint::Init(Model* model)
+bool Labirint::Init(Model* wallModel, Model* targetModel)
 {
-    modelOfWall = model;
+    modelOfWall = wallModel;
+    modelOfTarget = targetModel;
     return false;
 }
 
 bool Labirint::LoadFromFile(const char* path)
 {
     std::string line;
+    float modelSize = 3;
 
     std::ifstream in(path); // окрываем файл для чтения
     if (in.is_open())
     {
         Wall* newWall;
+        Target* newTarget;
         int j = 0;
         while (getline(in, line))
         {
@@ -26,24 +29,27 @@ bool Labirint::LoadFromFile(const char* path)
                 {
                 case 'w':
                     newWall = new Wall(modelOfWall);
-                    newWall->SetPosition(i, 0, j);
+                    newWall->SetPosition(i*modelSize, 0, j * modelSize);
                     walls.push_back(newWall);
                     break;
                 case 'h':
                     newWall = new Wall(modelOfWall);
                     newWall->SetRotation(0, 90, 0);
-                    newWall->SetPosition(i, 0, j);
+                    newWall->SetPosition(i * modelSize, 0, j * modelSize);
                     walls.push_back(newWall);
                     break;
-                case ' ':
+                case 'm':
+                    newTarget = new Target(modelOfTarget);
+                    newTarget->SetRotation(0, 45, 0);
+                    newTarget->SetPosition(i * modelSize, 0, j * modelSize);
                     break;
                 case 's':
-                    this->spawnPlayer = XMFLOAT3(i, 0, j);
+                    this->spawnPlayer = XMFLOAT3(i * modelSize, 0, j * modelSize);
                     break;
                 case 'e':
                     newWall = new Wall(modelOfWall);
-                    newWall->SetRotation(0, 90, 0);
-                    newWall->SetPosition(i, 0, j);
+                    newWall->SetRotation(0, 90, 0 );
+                    newWall->SetPosition(i * modelSize, 0, j * modelSize);
                     walls.push_back(newWall);
                     exit = newWall;
                     break;
@@ -66,4 +72,10 @@ void Labirint::Draw(CXMMATRIX viewMatrix)
     {
         walls[i]->Draw(viewMatrix);
     }
+
+    for (size_t i = 0; i < targets.size(); i++)
+    {
+        targets[i]->Draw(viewMatrix);
+    }
 }
+

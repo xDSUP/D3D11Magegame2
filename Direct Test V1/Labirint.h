@@ -4,6 +4,7 @@
 #include "Wall.h"
 #include "GameObject.h"
 #include "Model.h"
+#include "Target.h"
 
 using namespace D3D11Framework;
 using namespace std;
@@ -11,7 +12,7 @@ using namespace std;
 class Labirint : public GameObject
 {
 public :
-	bool Init(Model* model);
+	bool Init(Model* wallModel, Model* targetModel);
 
 	/// <summary>
 	/// Загружает лабиринт из файла
@@ -22,8 +23,10 @@ public :
 	void Draw(CXMMATRIX viewMatrix) override;
 
 	vector<Wall*> walls;
+	vector<Target*> targets;
 	Wall* exit;
 	XMFLOAT3 spawnPlayer;
 	Model* modelOfWall;
+	Model* modelOfTarget;
 };
 

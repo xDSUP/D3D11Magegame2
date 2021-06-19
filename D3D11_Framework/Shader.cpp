@@ -131,6 +131,7 @@ void Shader::AddTexture(ID3D11ShaderResourceView* texture)
 
 void Shader::Draw()
 {
+	
 	m_render->m_pImmediateContext->IASetInputLayout(m_layout);
 	m_render->m_pImmediateContext->VSSetShader(m_vertexShader, NULL, 0);
 	m_render->m_pImmediateContext->PSSetShader(m_pixelShader, NULL, 0);

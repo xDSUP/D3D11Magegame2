@@ -68,10 +68,13 @@ bool MyRender::Init()
 
 	labirint = new Labirint();
 	wallModel = new Model(this);
-	wallModel->Init("wall.obj");
+	wallModel->Init("wallBig.obj");
+
+	targetModel = new Model(this);
+	targetModel->Init("target.obj");
 
 	
-	labirint->Init(wallModel);
+	labirint->Init(wallModel, targetModel);
 	if (labirint->LoadFromFile("1.txt"))
 		return false;
 	//labirint = new Model(this);
@@ -80,8 +83,8 @@ bool MyRender::Init()
 	player = new Player();
 	player->InitModel(this, "grim.obj");
 	player->SetSpeedTurn(2);
-	player->SetSpeedMove(2);
-	player->SetMaxFrameTime(1.5);
+	player->SetSpeedMove(4);
+	player->SetMaxFrameTime(3);
 	player->SetPosition(labirint->spawnPlayer.x, labirint->spawnPlayer.y, labirint->spawnPlayer.z);
 	
 	font = new BitmapFont(this);
@@ -98,7 +101,7 @@ bool MyRender::Init()
 
 	flourModel = new Model(this);
 	
-	if (!flourModel->Init("flour.obj"))
+	if (!flourModel->Init("bigFlour.obj"))
 		return false;
 
 	if(!modelList.Init(10))
@@ -113,7 +116,7 @@ bool MyRender::Init()
 	initLight();
 
 	torchParticleGenerator = new ParticleGenerator(this);
-	if (!torchParticleGenerator->Init(w("particle.png"), 200, XMFLOAT3(0, 0.01f, 0), 0.2))
+	if (!torchParticleGenerator->Init(w("particle.png"), 200, XMFLOAT3(0, 0.01f, 0), 1))
 		return false;
 	torchParticleGenerator->model = mesh;
 	return true;
@@ -171,6 +174,36 @@ void MyRender::updateAndDrawFireBalls(XMMATRIX viewMatrix)
 	}
 }
 
+int MyRender::drawLabirint(XMMATRIX viewMatrix)
+{
+	int rendered = 0;
+	for (int i = 0; i < labirint->walls.size(); i++)
+	{
+		auto pos = labirint->walls[i]->GetPosition();
+		bool renderModel = frustum.CheckCube(pos.x, pos.y, pos.z, 0.5);
+		if(renderModel)
+		{
+			labirint->walls[i]->Draw(viewMatrix);
+		}
+		rendered++;
+	}
+	return rendered;
+}
+
+void MyRender::drawPlayer(XMMATRIX viewMatrix)
+{
+	player->Draw(viewMatrix);
+
+	mesh->Identity();
+	mesh->Scale(0.5, 0.5, 0.5);
+	mesh->Translate(
+		player->GetTorchLight()->position.x, 
+		player->GetTorchLight()->position.y, 
+		player->GetTorchLight()->position.z
+	);
+	mesh->Draw(viewMatrix);
+}
+
 bool MyRender::Draw()
 {
 	timer.Frame();
@@ -182,44 +215,27 @@ bool MyRender::Draw()
 	XMMATRIX viewMatrix = cam.GetViewMatrix();
 	frustum.ConstructFrustum(1000, m_Projection, viewMatrix);
 
+	int renderCount = drawLabirint(viewMatrix);;
 	flourModel->Draw(viewMatrix);
 	
-	int modelCount = modelList.GetModelCount();
-	int renderCount = 0;
-
-	for (int i = 0; i < labirint->walls.size(); i++)
-	{
-		auto pos = labirint->walls[i]->GetPosition();
-		bool renderModel = frustum.CheckCube(pos.x, pos.y, pos.z, 0.5);
-		if(renderModel)
-		{
-			labirint->walls[i]->Draw(viewMatrix);
-			renderCount++;
-		}
-	}
 	//labirint->Draw(viewMatrix);
 
-	player->Draw(viewMatrix);
-
-	mesh->Identity();
-	mesh->Translate(
-		player->GetTorchLight()->position.x, 
-		player->GetTorchLight()->position.y, 
-		player->GetTorchLight()->position.z
-	);
-	mesh->Draw(viewMatrix);
+	drawPlayer(viewMatrix);
 	
 	updateAndDrawFireBalls(viewMatrix);
-
-	
 	TurnOnAlphaBlending();
 
+	m_renderstate->TurnRasterNoCull();
+
+	
 	
 	torchParticleGenerator->Update(frameTime, player->GetTorchLight()->position, 2);
 	torchParticleGenerator->Draw(viewMatrix);
+
+	m_renderstate->TurnRasterNormal();
 	
 	TurnZBufferOff();
-	std::wstring t = L"���� �� ������: " + intToStr(renderCount);
+	std::wstring t = L"Стеночек: " + intToStr(renderCount);
 	
 	textNumSphere->SetText(t);
 	textNumSphere->Draw(1.0f, 1.0f, 1.0f, 20.0f, 10.0f);

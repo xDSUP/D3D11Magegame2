@@ -85,6 +85,7 @@ private:
 	Labirint* labirint;
 	Model* wallModel;
 	Model* flourModel;
+	Model* targetModel;
 	StaticMesh* mesh;
 	list<FireBall*> fireBalls;
 	ParticleGenerator* torchParticleGenerator;
@@ -104,4 +105,6 @@ private:
 
 	void handleCamMove();
 	void updateAndDrawFireBalls(XMMATRIX viewMatrix);
+	int drawLabirint(XMMATRIX viewMatrix);
+	void drawPlayer(XMMATRIX viewMatrix);
 };
